@@ -1,9 +1,17 @@
 $(document).ready(function(){
-    $( ".loginButton" ).click(function() {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-    });
+    $(document).on(
+        'fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
+        function(){
+            //some code that requires the FB object
+            //such as...
+            $( ".loginButton" ).click(function() {
+                FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+                });
+            });
+        }
+    );
+
 });
 
 function statusChangeCallback(response) {
